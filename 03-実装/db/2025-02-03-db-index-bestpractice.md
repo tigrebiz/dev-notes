@@ -17,7 +17,7 @@ pk の単一インデックス、ユニークなカラムの単一インデッ�
 | ------------ | ----------- | -------------------------------------------- | -------------------------------- | ------------ | ---------------------------------------------------------------------------------------------------- |
 | id           | SERIAL      | PRIMARY KEY, NOT NULL                        | 事業所の一意の ID                | デフォルト   | 主キーによる索引が自動的に設定される                                                                 |
 | name         | TEXT        | NOT NULL                                     | 事業所の正式名称                 | -            |                                                                                                      |
-| office_code  | VARCHAR(10) | UNIQUE NOT NULL                              | 事業所独自の一意のコード         | 単一         |                                                                                                      |
+| office_code  | VARCHAR(10) | UNIQUE NOT NULL                              | 事業所独自の一意のコード         | 単一         | コード検索する場合に単一インデックス                                                                 |
 | phone_number | VARCHAR(20) | NULL CHECK (phone_number ~ '^[0-9-]\*$')     | 代表電話番号                     | -            | 半角数値とハイフンのみ許可。例: 03-1234-5678 または 09012345678                                      |
 | status       | INT         | NOT NULL CHECK (status IN (0,1,2)) DEFAULT 1 | 状態（0:無効、1:有効、2:休止中） | 複合         | 検索要件によって status = 1,deleted_at is null の複合インデックス                                    |
 | created_at   | TIMESTAMP   | NOT NULL DEFAULT CURRENT_TIMESTAMP           | レコード作成日時                 | -            | Django の auto_now_add に連動                                                                        |
